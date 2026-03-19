@@ -7,6 +7,9 @@ exports.createReview = async (req, res) => {
   try {
     const { businessId, rating, comment } = req.body;
 
+    // ✅ handle optional image
+    const image = req.file ? req.file.path : "";
+
     const review = await Review.create({
       userId: req.user.id,
       businessId,
@@ -23,7 +26,6 @@ exports.createReview = async (req, res) => {
     res.status(500).json({ msg: err.message });
   }
 };
-
 
 // 👀 2. Get Approved Reviews (PUBLIC)
 exports.getReviewsByBusiness = async (req, res) => {
