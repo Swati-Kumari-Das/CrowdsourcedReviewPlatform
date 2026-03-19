@@ -6,6 +6,9 @@ const authRoutes = require("./routes/authRoutes");
 const businessRoutes = require("./routes/businessRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const User = require("./models/User");
+const bcrypt = require("bcryptjs");
+
 dotenv.config();
 
 const app = express();
@@ -20,6 +23,28 @@ app.use("/api/businesses", businessRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/admin", adminRoutes);
 // test route
+
+// const createAdmin = async () => {
+//   const existing = await User.findOne({ email: "admin@test.com" });
+
+//   if (!existing) {
+//     const hashedPassword = await bcrypt.hash("123456", 10);
+
+//     await User.create({
+//       name: "Admin",
+//       email: "admin@test.com",
+//       password: hashedPassword,
+//       role: "admin",
+//     });
+
+//     console.log("Admin created");
+//   } else {
+//     console.log("Admin already exists");
+//   }
+// };
+
+// // Call function
+// createAdmin();
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
