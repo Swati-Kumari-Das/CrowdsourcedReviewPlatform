@@ -11,9 +11,7 @@ const bcrypt = require("bcryptjs");
 
 //dotenv.config();
 require("dotenv").config();
-
 require("./config/cloudinary"); // AFTER dotenv
-console.log("API KEY:", process.env.CLOUD_API_KEY);
 
 const app = express();
 
